@@ -3,6 +3,9 @@ import { useEffect, useState } from "react";
 import { Alert, Text, View } from "react-native";
 
 import { Categories, CategoriesProps } from "@/components/categories";
+import { PlaceProps } from "@/components/place";
+
+type LojasProps  =  PlaceProps;
 
 export default function Home(){
 
@@ -11,6 +14,7 @@ export default function Home(){
     const [categorias, setCategorias] = useState<CategoriesProps>([])
 
     const [categoria, setCategoria] = useState("")
+    const [lojas, setLojas] = useState<LojasProps[]>([])
 
 
     async function buscarCategorias() {
@@ -31,6 +35,21 @@ export default function Home(){
         }
     }
 
+    async function buscarLojas() {
+        try {
+            if(!categoria){
+                return 
+            }
+
+            const {data}  = await backendAplcacao.get("/markets/category/"+categoria)
+            setLojas(data)
+            console.log(data)
+        } catch (error) {
+            console.log(error);
+            Alert.alert("Não foi possivél carregar os locais!")
+        }
+    }
+
     //Coloca as funções que vão ser chamadas quando a tela e carregada
     //dentro do array voce pode colocar uma função quando mudar ele re-executa o useEfect
     useEffect(
@@ -38,6 +57,14 @@ export default function Home(){
             buscarCategorias()
         },
         []
+    )
+
+    //é bom criar um Useefect para cada função async e a dependecia fica entre o arry no caso precisa da categoria carregada
+    useEffect(
+        ()=>{
+            buscarLojas()
+        },
+        [categoria]
     )
 
 
