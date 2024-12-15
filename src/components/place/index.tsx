@@ -11,13 +11,13 @@ import {
   import { colors } from "@/styles/theme"
   
   export type PlaceProps = {
-    id: string
-    name: string
-    description: string
-    coupons: number
-    cover: string
-    address: string
-  }
+    id: string;
+    name: string;
+    description: string;
+    coupons: number;
+    cover: string;
+    address: string;
+  };
   
   type Props = TouchableOpacityProps & {
     data: PlaceProps

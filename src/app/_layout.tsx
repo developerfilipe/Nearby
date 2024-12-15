@@ -6,6 +6,9 @@ import {Stack} from "expo-router"
 //importa as fontes criadas 
 import {colors} from "@/styles/theme"
 
+//importa o componente que vai ter que inglobar toda aplicação do pop up de lojas
+import { GestureHandlerRootView } from "react-native-gesture-handler"
+
 import {
     useFonts, //serve para poder usar as fontes
     //fontes que serão usadas 
@@ -44,12 +47,16 @@ export default function Layout(){
 
 
     //usa a rota
-    return <Stack screenOptions={{
-          //recebe uma propiedade para ocultar o cabeçalho da view
-        headerShown : false,
+    return(
+    <GestureHandlerRootView style={{ flex: 1 }}>
+        <Stack screenOptions={{
+            //recebe uma propiedade para ocultar o cabeçalho da view
+            headerShown : false,
 
-        //Muda o background de todo o APP
-        contentStyle: {backgroundColor :colors.gray[100] }
-    
-    }}/>
+            //Muda o background de todo o APP
+            contentStyle: {backgroundColor :colors.gray[100] }
+        
+        }}/>
+    </GestureHandlerRootView>
+    )
 }

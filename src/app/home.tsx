@@ -4,6 +4,7 @@ import { Alert, Text, View } from "react-native";
 
 import { Categories, CategoriesProps } from "@/components/categories";
 import { PlaceProps } from "@/components/place";
+import { Palces } from "@/components/places";
 
 type LojasProps  =  PlaceProps;
 
@@ -43,7 +44,7 @@ export default function Home(){
 
             const {data}  = await backendAplcacao.get("/markets/category/"+categoria)
             setLojas(data)
-            console.log(data)
+           
         } catch (error) {
             console.log(error);
             Alert.alert("Não foi possivél carregar os locais!")
@@ -70,7 +71,12 @@ export default function Home(){
 
     return (
         <View style={{flex:1}}>
-           <Categories data={categorias} onSelect={setCategoria} selected={categoria}/>
+           <Categories 
+           data={categorias} 
+           onSelect={setCategoria} 
+           selected={categoria}/>
+
+            <Palces data={lojas} />
         </View>
     )
 }
