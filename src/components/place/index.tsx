@@ -30,7 +30,8 @@ import {
   
         <View style={s.content}>
           <Text style={s.name}>{data.name}</Text>
-          <Text style={s.description}>{data.description}</Text>
+          {/* Coloca o numero de linhas do texto */}
+          <Text style={s.description} numberOfLines={2}>{data.description}</Text>
   
           <View style={s.footer}>
             <IconTicket size={16} color={colors.red.base} />
